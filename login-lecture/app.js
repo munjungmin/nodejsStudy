@@ -1,47 +1,21 @@
-// express로 서버 띄우기
 const express = require("express");
 const app = express();
 
-// root 
-app.get("/", (req, res) => {   // request response
-    res.send(`
-    <!DOCTYPE html>
-    <html lang="ko">  
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
-        여기는 루트입니다.
-    </body>
-    </html>
-   `);
+// 앱 세팅
+app.set("views", "./views");
+app.set("view engine", "ejs");  // html 코드를 어떤 엔진으로 해석할지 결정
+
+
+app.get("/", (req, res) => {
+    res.render("home/index");  // 위에 뷰를 views라는 폴더로 지정했으므로
 });
 
-// root/login
 app.get("/login", (req, res) => {
-    res.send(`
-        <!DOCTYPE html>
-        <html lang="ko">  
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
-        </head>
-        <body>
-            <input type="text" placeholder="아이디"><br>
-            <input type="text" placeholder="비밀번호"><br>
-            <button>로그인</button>
-        </body>
-        </html>
-    `);
+    res.render("home/login");
 });
 
 app.listen(3000, () => {
     console.log("서버 가동");
 });
 
-// 일부러 하드코딩한 상태
+
